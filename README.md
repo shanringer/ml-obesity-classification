@@ -1,28 +1,23 @@
-# 🏋️ Obesity Level Classification using Machine Learning
+# Obesity Level Classification using Machine Learning
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-url.streamlit.app)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4.0-orange.svg)](https://scikit-learn.org)
 
-**BITS WILP M.Tech AIML/DSE - Machine Learning Assignment 2**
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 - [Problem Statement](#-problem-statement)
 - [Dataset Description](#-dataset-description)
 - [Models Implemented](#-models-implemented)
 - [Model Comparison](#-model-comparison)
 - [Model Observations](#-model-observations)
 - [Project Structure](#-project-structure)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Streamlit App Features](#-streamlit-app-features)
-- [References](#-references)
 
 ---
 
-## 🎯 Problem Statement
+## Problem Statement
 
 Obesity is a global health epidemic that has significant implications for public health. This project aims to develop a multi-class classification system to predict obesity levels in individuals based on their eating habits and physical condition. 
 
@@ -39,7 +34,7 @@ By implementing and comparing multiple machine learning classification models, t
 
 ---
 
-## 📊 Dataset Description
+## Dataset Description
 
 **Dataset Name:** Estimation of Obesity Levels Based on Eating Habits and Physical Condition
 
@@ -104,7 +99,7 @@ Six classification models were implemented and evaluated:
 
 ---
 
-## 📈 Model Comparison
+## Model Comparison
 
 ### Evaluation Metrics Table
 
@@ -121,7 +116,7 @@ Six classification models were implemented and evaluated:
 
 ---
 
-## 📝 Model Observations
+## Model Observations
 
 | ML Model Name | Observation about model performance |
 |---------------|-------------------------------------|
@@ -162,137 +157,10 @@ ml-obesity-classification/
 
 ---
 
-## 🚀 Installation
-
-### Prerequisites
-- Python 3.9 or higher
-- pip package manager
-
-### Setup Instructions
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/your-username/ml-obesity-classification.git
-cd ml-obesity-classification
-```
-
-2. **Create virtual environment (optional but recommended)**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Download the dataset**
-   - Download from [UCI Repository](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition)
-   - Or from [Kaggle](https://www.kaggle.com/datasets/jayitabhattacharyya/estimation-of-obesity-levels-uci-dataset)
-   - Place `ObesityDataSet_raw_and_data_sinthetic.csv` in the `model/` directory
-
-5. **Train the models**
-```bash
-cd model
-jupyter notebook model_training.ipynb
-# Run all cells to train and save models
-```
-
-6. **Run the Streamlit app**
-```bash
-cd ..
-streamlit run app.py
-```
-
----
-
-## 💻 Usage
-
-### Running the Training Notebook
-
-```python
-# Open Jupyter Notebook
-jupyter notebook model/model_training.ipynb
-
-# Execute all cells to:
-# 1. Load and preprocess data
-# 2. Train all 6 models
-# 3. Evaluate and compare models
-# 4. Save models and artifacts
-```
-
-### Running the Streamlit App Locally
-
-```bash
-streamlit run app.py
-```
-
-The app will open in your default browser at `http://localhost:8501`
-
----
-
-## 🌐 Streamlit App Features
-
-The deployed Streamlit application includes:
-
-### 1. 📁 Data Upload & Prediction
-- Upload CSV test data files
-- Automatic preprocessing and prediction
-- Download predictions as CSV
-- Real-time evaluation metrics (when true labels available)
-
-### 2. 📈 Model Metrics
-- Individual model performance metrics
-- Visual metric comparison charts
-- Detailed metric explanations
-
-### 3. 🔍 Model Comparison
-- Side-by-side comparison table
-- Interactive metric selection
-- Best model identification
-
-### 4. 📉 Confusion Matrix
-- Heatmap visualization
-- Classification report
-- Per-class performance analysis
-
-### 5. ℹ️ About Section
-- Dataset information
-- Model descriptions
-- Evaluation metric explanations
-
----
-
-## 📚 References
-
-1. **Dataset:**
-   - Palechor, F. M., & De la Hoz Manotas, A. (2019). Estimation of Obesity Levels Based On Eating Habits and Physical Condition [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5H31Z
-
-2. **Original Paper:**
-   - De-La-Hoz-Correa, E., Mendoza-Palechor, F., De-La-Hoz-Manotas, A., Morales-Ortega, R., & Adriana, S. H. B. (2019). Obesity level estimation software based on decision trees. Journal of Computer Science, 15(1), 67-77.
-
-3. **Libraries:**
-   - scikit-learn: https://scikit-learn.org/
-   - XGBoost: https://xgboost.readthedocs.io/
-   - Streamlit: https://streamlit.io/
-
----
-
-## 📄 License
-
-This project is for educational purposes as part of BITS WILP M.Tech AIML/DSE program.
-
-Dataset is available under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/).
-
----
-
 ## 👤 Author
 
-**BITS WILP M.Tech AIML/DSE Student**
+**Shanmugasundaram M**
 
 Machine Learning - Assignment 2
 
 ---
-
-*Last Updated: February 2026*
