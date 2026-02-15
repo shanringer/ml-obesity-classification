@@ -202,7 +202,7 @@ def plot_confusion_matrix(y_true, y_pred, class_labels):
 
 def main():
     # Header
-    st.markdown('<p class="main-header">🏋️ Obesity Level Classification</p>', unsafe_allow_html=True)
+    st.markdown('<p class="main-header"> Obesity Level Classification</p>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Multi-class Classification using Machine Learning Models</p>', unsafe_allow_html=True)
     
     # Sidebar
@@ -349,7 +349,7 @@ def main():
     
     # Tab 2: Model Metrics
     with tab2:
-        st.header("📈 Individual Model Metrics")
+        st.header("Individual Model Metrics")
         
         if results_df is not None:
             st.subheader(f"Metrics for: {selected_model}")
@@ -374,7 +374,7 @@ def main():
                     st.metric("MCC", f"{model_metrics['MCC']:.4f}")
                 
                 # Radar chart for model metrics
-                st.subheader("📊 Metrics Visualization")
+                st.subheader(" Metrics Visualization")
                 
                 metrics_names = ['Accuracy', 'AUC', 'Precision', 'Recall', 'F1', 'MCC']
                 values = [model_metrics[m] for m in metrics_names]
@@ -399,7 +399,7 @@ def main():
     
     # Tab 3: Model Comparison
     with tab3:
-        st.header("🔍 Model Comparison")
+        st.header(" Model Comparison")
         
         if results_df is not None:
             # Display comparison table
@@ -411,7 +411,7 @@ def main():
             )
             
             # Comparison charts
-            st.subheader("📈 Visual Comparison")
+            st.subheader(" Visual Comparison")
             
             metric_to_compare = st.selectbox(
                 "Select metric to compare:",
@@ -481,7 +481,7 @@ def main():
           - Obesity Type II
           - Obesity Type III
         
-        ### 🤖 Models Implemented
+        ### Models Implemented
         
         | Model | Type | Description |
         |-------|------|-------------|
@@ -492,7 +492,7 @@ def main():
         | Random Forest | Ensemble | Bagging ensemble of decision trees |
         | XGBoost | Ensemble | Gradient boosting ensemble |
         
-        ### 📊 Evaluation Metrics
+        ### Evaluation Metrics
         
         - **Accuracy:** Overall correctness of predictions
         - **AUC (ROC):** Area under the ROC curve (multi-class weighted)
