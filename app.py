@@ -205,9 +205,6 @@ def main():
     st.markdown('<p class="main-header"> Obesity Level Classification</p>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Multi-class Classification using Machine Learning Models</p>', unsafe_allow_html=True)
     
-    # Sidebar
-    st.sidebar.title("Navigation")
-    
     # Try to load models
     try:
         models, scaler, label_encoders, feature_names, class_labels = load_models()
@@ -236,7 +233,7 @@ def main():
         )
     
     # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs([" Data Upload & Prediction", " Model Metrics", "🔍 Model Comparison", " About"])
+    tab1, tab2, tab3, tab4 = st.tabs([" Data Upload & Prediction", " Model Metrics", " Model Comparison", " About"])
     
     # Tab 1: Data Upload & Prediction
     with tab1:
