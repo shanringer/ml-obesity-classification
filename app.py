@@ -206,7 +206,7 @@ def main():
     st.markdown('<p class="sub-header">Multi-class Classification using Machine Learning Models</p>', unsafe_allow_html=True)
     
     # Sidebar
-    st.sidebar.title(" Navigation")
+    st.sidebar.title("Navigation")
     
     # Try to load models
     try:
@@ -220,7 +220,7 @@ def main():
     results_df = load_results()
     
     # Sidebar - Model Selection
-    st.sidebar.header("🤖 Model Selection")
+    st.sidebar.header("Model Selection")
     
     if models_available:
         selected_model = st.sidebar.selectbox(
@@ -236,7 +236,7 @@ def main():
         )
     
     # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["📁 Data Upload & Prediction", "📈 Model Metrics", "🔍 Model Comparison", "ℹ️ About"])
+    tab1, tab2, tab3, tab4 = st.tabs([" Data Upload & Prediction", " Model Metrics", "🔍 Model Comparison", " About"])
     
     # Tab 1: Data Upload & Prediction
     with tab1:
@@ -244,11 +244,39 @@ def main():
         
         st.info("""
         **Instructions:**
-        1. Upload a CSV file containing test data
-        2. The file should have the same features as the training data
-        3. Optionally include 'NObeyesdad' column for evaluation
+        1. Download the sample dataset below (optional)
+        2. Upload a CSV file containing test data
+        3. The file should have the same features as the training data
+        4. Optionally include 'NObeyesdad' column for evaluation
         """)
         
+        # Download Sample Dataset Section
+        st.subheader(" Download Sample Dataset")
+        st.write("Download the sample obesity dataset to test the application:")
+        
+        # Load sample data for download
+        sample_data_path = 'model/ObesityDataSet_raw_and_data_sinthetic.csv'
+        try:
+            if os.path.exists(sample_data_path):
+                with open(sample_data_path, 'r') as f:
+                    sample_csv = f.read()
+                st.download_button(
+                    label="⬇️ Download Sample Dataset (CSV)",
+                    data=sample_csv,
+                    file_name="ObesityDataSet_sample.csv",
+                    mime="text/csv",
+                    help="Download the obesity dataset to test the application"
+                )
+                st.caption("*Dataset contains 2,111 records with 16 features*")
+            else:
+                st.warning("Sample dataset file not found.")
+        except Exception as e:
+            st.warning(f"Could not load sample dataset: {e}")
+        
+        st.divider()
+        
+        # Upload Section
+        st.subheader(" Upload Your Data")
         uploaded_file = st.file_uploader(
             "Choose a CSV file",
             type=['csv'],
@@ -262,7 +290,7 @@ def main():
                 st.success(f" File uploaded successfully! Shape: {df.shape}")
                 
                 # Display data preview
-                with st.expander("📋 Data Preview", expanded=True):
+                with st.expander(" Data Preview", expanded=True):
                     st.dataframe(df.head(10), use_container_width=True)
                 
                 # Check if models are available
@@ -278,7 +306,7 @@ def main():
                     model = models[selected_model]
                     
                     # Make predictions
-                    st.subheader(f"🎯 Predictions using {selected_model}")
+                    st.subheader(f" Predictions using {selected_model}")
                     
                     y_pred = model.predict(X_scaled)
                     y_pred_proba = model.predict_proba(X_scaled) if hasattr(model, 'predict_proba') else None
@@ -349,7 +377,7 @@ def main():
     
     # Tab 2: Model Metrics
     with tab2:
-        st.header("Individual Model Metrics")
+        st.header(" Individual Model Metrics")
         
         if results_df is not None:
             st.subheader(f"Metrics for: {selected_model}")
