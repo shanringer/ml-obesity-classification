@@ -31,7 +31,7 @@ from sklearn.metrics import (
 # Page configuration
 st.set_page_config(
     page_title="Obesity Level Classification",
-    page_icon="🏋️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -206,7 +206,7 @@ def main():
     st.markdown('<p class="sub-header">Multi-class Classification using Machine Learning Models</p>', unsafe_allow_html=True)
     
     # Sidebar
-    st.sidebar.title("📊 Navigation")
+    st.sidebar.title(" Navigation")
     
     # Try to load models
     try:
@@ -259,7 +259,7 @@ def main():
             try:
                 df = pd.read_csv(uploaded_file)
                 
-                st.success(f"✅ File uploaded successfully! Shape: {df.shape}")
+                st.success(f" File uploaded successfully! Shape: {df.shape}")
                 
                 # Display data preview
                 with st.expander("📋 Data Preview", expanded=True):
@@ -267,7 +267,7 @@ def main():
                 
                 # Check if models are available
                 if not models_available:
-                    st.warning("⚠️ Models not loaded. Please ensure model files are in the correct directory.")
+                    st.warning(" Models not loaded. Please ensure model files are in the correct directory.")
                 else:
                     # Preprocess data
                     X_scaled, y_encoded, y_original = preprocess_data(
@@ -302,7 +302,7 @@ def main():
                     # Download predictions
                     csv = predictions_df.to_csv(index=False)
                     st.download_button(
-                        label="📥 Download Predictions",
+                        label=" Download Predictions",
                         data=csv,
                         file_name="predictions.csv",
                         mime="text/csv"
@@ -310,7 +310,7 @@ def main():
                     
                     # If true labels available, show evaluation
                     if y_encoded is not None:
-                        st.subheader("📊 Evaluation Metrics")
+                        st.subheader(" Evaluation Metrics")
                         
                         metrics = calculate_metrics(y_encoded, y_pred, y_pred_proba)
                         
@@ -337,7 +337,7 @@ def main():
                         st.pyplot(fig)
                         
                         # Classification Report
-                        st.subheader("📋 Classification Report")
+                        st.subheader(" Classification Report")
                         report = classification_report(y_encoded, y_pred, 
                                                        target_names=class_labels,
                                                        output_dict=True)
@@ -403,7 +403,7 @@ def main():
         
         if results_df is not None:
             # Display comparison table
-            st.subheader("📊 Comparison Table")
+            st.subheader(" Comparison Table")
             st.dataframe(
                 results_df.style.highlight_max(axis=0, color='lightgreen')
                           .format("{:.4f}"),
@@ -438,7 +438,7 @@ def main():
             st.pyplot(fig)
             
             # Best model summary
-            st.subheader("🏆 Best Model Summary")
+            st.subheader(" Best Model Summary")
             
             col1, col2, col3 = st.columns(3)
             
@@ -458,10 +458,10 @@ def main():
     
     # Tab 4: About
     with tab4:
-        st.header("ℹ️ About This Application")
+        st.header("About This Application")
         
         st.markdown("""
-        ### 📚 Dataset Information
+        ###  Dataset Information
         
         **Dataset Name:** Estimation of Obesity Levels Based on Eating Habits and Physical Condition
         
@@ -501,24 +501,7 @@ def main():
         - **F1 Score:** Harmonic mean of precision and recall
         - **MCC:** Matthews Correlation Coefficient
         
-        ### 👨‍💻 Developer
         
-        **BITS WILP M.Tech AIML**  
-        Machine Learning Assignment 2
-        
-        ---
-        
-        *Built with Streamlit* 🚀
-        """)
-        
-        st.markdown("---")
-        st.markdown("**Citation:**")
-        st.code("""
-Palechor, F. M., & De la Hoz Manotas, A. (2019). 
-Estimation of Obesity Levels Based On Eating Habits and Physical Condition [Dataset]. 
-UCI Machine Learning Repository. 
-https://doi.org/10.24432/C5H31Z
-        """)
 
 
 if __name__ == "__main__":
