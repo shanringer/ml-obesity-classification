@@ -31,7 +31,7 @@ from sklearn.metrics import (
 # Page configuration
 st.set_page_config(
     page_title="Obesity Level Classification",
-    page_icon="",
+    page_icon="OL",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -205,6 +205,9 @@ def main():
     st.markdown('<p class="main-header"> Obesity Level Classification</p>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Multi-class Classification using Machine Learning Models</p>', unsafe_allow_html=True)
     
+    # Sidebar
+    st.sidebar.title("Navigation")
+    
     # Try to load models
     try:
         models, scaler, label_encoders, feature_names, class_labels = load_models()
@@ -233,7 +236,7 @@ def main():
         )
     
     # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs([" Data Upload & Prediction", " Model Metrics", " Model Comparison", " About"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Data Upload & Prediction", "Model Metrics", "Model Comparison", "About"])
     
     # Tab 1: Data Upload & Prediction
     with tab1:
@@ -248,23 +251,23 @@ def main():
         """)
         
         # Download Sample Dataset Section
-        st.subheader(" Download Sample Dataset")
-        st.write("Download the sample obesity dataset to test the application:")
+        st.subheader("Download Sample Dataset")
+        st.write("Download the sample test dataset to try the application:")
         
         # Load sample data for download
-        sample_data_path = 'model/ObesityDataSet_raw_and_data_sinthetic.csv'
+        sample_data_path = 'model/trained_models/test_data.csv'
         try:
             if os.path.exists(sample_data_path):
                 with open(sample_data_path, 'r') as f:
                     sample_csv = f.read()
                 st.download_button(
-                    label="⬇️ Download Sample Dataset (CSV)",
+                    label="Download Sample Test Data (CSV)",
                     data=sample_csv,
-                    file_name="ObesityDataSet_sample.csv",
+                    file_name="test_data.csv",
                     mime="text/csv",
-                    help="Download the obesity dataset to test the application"
+                    help="Download the test dataset to try the application"
                 )
-                st.caption("*Dataset contains 2,111 records with 16 features*")
+                st.caption("*Test dataset contains 423 records with 16 features*")
             else:
                 st.warning("Sample dataset file not found.")
         except Exception as e:
@@ -273,7 +276,7 @@ def main():
         st.divider()
         
         # Upload Section
-        st.subheader(" Upload Your Data")
+        st.subheader("Upload Your Data")
         uploaded_file = st.file_uploader(
             "Choose a CSV file",
             type=['csv'],
@@ -284,15 +287,15 @@ def main():
             try:
                 df = pd.read_csv(uploaded_file)
                 
-                st.success(f" File uploaded successfully! Shape: {df.shape}")
+                st.success(f"File uploaded successfully! Shape: {df.shape}")
                 
                 # Display data preview
-                with st.expander(" Data Preview", expanded=True):
+                with st.expander("Data Preview", expanded=True):
                     st.dataframe(df.head(10), use_container_width=True)
                 
                 # Check if models are available
                 if not models_available:
-                    st.warning(" Models not loaded. Please ensure model files are in the correct directory.")
+                    st.warning("Models not loaded. Please ensure model files are in the correct directory.")
                 else:
                     # Preprocess data
                     X_scaled, y_encoded, y_original = preprocess_data(
@@ -303,7 +306,7 @@ def main():
                     model = models[selected_model]
                     
                     # Make predictions
-                    st.subheader(f" Predictions using {selected_model}")
+                    st.subheader(f"Predictions using {selected_model}")
                     
                     y_pred = model.predict(X_scaled)
                     y_pred_proba = model.predict_proba(X_scaled) if hasattr(model, 'predict_proba') else None
@@ -335,7 +338,7 @@ def main():
                     
                     # If true labels available, show evaluation
                     if y_encoded is not None:
-                        st.subheader(" Evaluation Metrics")
+                        st.subheader("Evaluation Metrics")
                         
                         metrics = calculate_metrics(y_encoded, y_pred, y_pred_proba)
                         
@@ -357,12 +360,12 @@ def main():
                             st.metric("MCC", f"{metrics['MCC']:.4f}")
                         
                         # Confusion Matrix
-                        st.subheader("📉 Confusion Matrix")
+                        st.subheader("Confusion Matrix")
                         fig = plot_confusion_matrix(y_encoded, y_pred, class_labels)
                         st.pyplot(fig)
                         
                         # Classification Report
-                        st.subheader(" Classification Report")
+                        st.subheader("Classification Report")
                         report = classification_report(y_encoded, y_pred, 
                                                        target_names=class_labels,
                                                        output_dict=True)
@@ -374,7 +377,7 @@ def main():
     
     # Tab 2: Model Metrics
     with tab2:
-        st.header(" Individual Model Metrics")
+        st.header("Individual Model Metrics")
         
         if results_df is not None:
             st.subheader(f"Metrics for: {selected_model}")
@@ -399,7 +402,7 @@ def main():
                     st.metric("MCC", f"{model_metrics['MCC']:.4f}")
                 
                 # Radar chart for model metrics
-                st.subheader(" Metrics Visualization")
+                st.subheader("Metrics Visualization")
                 
                 metrics_names = ['Accuracy', 'AUC', 'Precision', 'Recall', 'F1', 'MCC']
                 values = [model_metrics[m] for m in metrics_names]
@@ -424,11 +427,11 @@ def main():
     
     # Tab 3: Model Comparison
     with tab3:
-        st.header(" Model Comparison")
+        st.header("Model Comparison")
         
         if results_df is not None:
             # Display comparison table
-            st.subheader(" Comparison Table")
+            st.subheader("Comparison Table")
             st.dataframe(
                 results_df.style.highlight_max(axis=0, color='lightgreen')
                           .format("{:.4f}"),
@@ -436,7 +439,7 @@ def main():
             )
             
             # Comparison charts
-            st.subheader(" Visual Comparison")
+            st.subheader("Visual Comparison")
             
             metric_to_compare = st.selectbox(
                 "Select metric to compare:",
@@ -463,7 +466,7 @@ def main():
             st.pyplot(fig)
             
             # Best model summary
-            st.subheader(" Best Model Summary")
+            st.subheader("Best Model Summary")
             
             col1, col2, col3 = st.columns(3)
             
@@ -486,7 +489,7 @@ def main():
         st.header("About This Application")
         
         st.markdown("""
-        ###  Dataset Information
+        ### Dataset Information
         
         **Dataset Name:** Estimation of Obesity Levels Based on Eating Habits and Physical Condition
         
@@ -525,6 +528,7 @@ def main():
         - **Recall:** Sensitivity / True positive rate
         - **F1 Score:** Harmonic mean of precision and recall
         - **MCC:** Matthews Correlation Coefficient
+        
         
         """)
 
