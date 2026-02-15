@@ -501,7 +501,7 @@ def main():
         - **F1 Score:** Harmonic mean of precision and recall
         - **MCC:** Matthews Correlation Coefficient
         
-        
+        """)
 
 
 if __name__ == "__main__":
